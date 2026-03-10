@@ -1,0 +1,253 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(AIPolicyHub());
+}
+
+class AIPolicyHub extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'AI Policy Hub',
+      home: LoginScreen(),
+    );
+  }
+}
+
+class LoginScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("AI Policy Hub Login"),
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+
+            Text(
+              "AI Policy Hub",
+              style: TextStyle(
+                fontSize: 32,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+
+            SizedBox(height: 40),
+
+            TextField(
+              decoration: InputDecoration(
+                labelText: "Email",
+                border: OutlineInputBorder(),
+              ),
+            ),
+
+            SizedBox(height: 20),
+
+            TextField(
+              obscureText: true,
+              decoration: InputDecoration(
+                labelText: "Password",
+                border: OutlineInputBorder(),
+              ),
+            ),
+
+            SizedBox(height: 30),
+
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DashboardScreen(),
+                  ),
+                );
+              },
+              child: Text("Login"),
+            ),
+
+            SizedBox(height: 10),
+
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SignupScreen(),
+                  ),
+                );
+              },
+              child: Text("Create Account"),
+            ),
+
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class SignupScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Sign Up"),
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(20),
+        child: Column(
+          children: [
+
+            TextField(
+              decoration: InputDecoration(
+                labelText: "Name",
+                border: OutlineInputBorder(),
+              ),
+            ),
+
+            SizedBox(height: 20),
+
+            TextField(
+              decoration: InputDecoration(
+                labelText: "Email",
+                border: OutlineInputBorder(),
+              ),
+            ),
+
+            SizedBox(height: 20),
+
+            TextField(
+              obscureText: true,
+              decoration: InputDecoration(
+                labelText: "Password",
+                border: OutlineInputBorder(),
+              ),
+            ),
+
+            SizedBox(height: 30),
+
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => UserTypeScreen(),
+                  ),
+                );
+              },
+              child: Text("Create Account"),
+            ),
+
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class UserTypeScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Select User Type"),
+      ),
+
+      body: Padding(
+        padding: EdgeInsets.all(20),
+
+        child: GridView.count(
+          crossAxisCount: 2,
+          crossAxisSpacing: 20,
+          mainAxisSpacing: 20,
+
+          children: [
+
+            sectorCard(context, Icons.school, "Student"),
+
+            sectorCard(context, Icons.computer, "IT Professional"),
+
+            sectorCard(context, Icons.agriculture, "Farmer"),
+
+            sectorCard(context, Icons.account_balance, "Government Employee"),
+
+            sectorCard(context, Icons.business, "Business Owner"),
+
+            sectorCard(context, Icons.local_hospital, "Healthcare Worker"),
+
+            sectorCard(context, Icons.public, "General Public"),
+
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+Widget sectorCard(BuildContext context, IconData icon, String title) {
+  return GestureDetector(
+    onTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => DashboardScreen(),
+        ),
+      );
+    },
+
+    child: Card(
+      elevation: 6,
+
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+      ),
+
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+
+        children: [
+
+          Icon(
+            icon,
+            size: 50,
+            color: Colors.blue,
+          ),
+
+          SizedBox(height: 10),
+
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+
+        ],
+      ),
+    ),
+  );
+}
+
+class DashboardScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Policy Hub Dashboard"),
+      ),
+
+      body: Center(
+        child: Text(
+          "Welcome to AI Policy Hub",
+          style: TextStyle(fontSize: 24),
+        ),
+      ),
+    );
+  }
+}
